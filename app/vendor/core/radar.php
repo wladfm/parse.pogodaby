@@ -7,10 +7,6 @@ class Radar extends CurlAbstract
     private string $country;
     private string $city;
 
-    const PRE_ALL_CITY = '/api/v2/weather-fact/all-cities';
-    const PRE_API = '/api/v2/radar/';
-    const PRE_IMG = '/files/radars/static/';
-
     public function __construct(string $country, string $city)
     {
         $this->country = $country;
@@ -22,7 +18,7 @@ class Radar extends CurlAbstract
      */
     public function getParamsCity(): ?array
     {
-        $allCities = $this->getCurl(Config::getInstance()->url . self::PRE_ALL_CITY);
+        $allCities = $this->getCurl(Config::getInstance()->url . Config::getInstance()->pre_all_city);
         if ($allCities) {
             $allCities = json_decode($allCities, true);
             if (json_last_error() == JSON_ERROR_NONE) {
@@ -40,7 +36,7 @@ class Radar extends CurlAbstract
      */
     public function getLastRadar(int $id): ?string
     {
-        $data = $this->getCurl(Config::getInstance()->url . self::PRE_API . $id);
+        $data = $this->getCurl(Config::getInstance()->url . Config::getInstance()->pre_api . $id);
         if ($data) {
             $data = json_decode($data, true);
             if (json_last_error() == JSON_ERROR_NONE) {
@@ -57,6 +53,6 @@ class Radar extends CurlAbstract
      */
     public function getImg(int $id, string $filename): bool|string
     {
-        return $this->getCurl(Config::getInstance()->url . self::PRE_IMG . $id . DIRECTORY_SEPARATOR . $filename);
+        return $this->getCurl(Config::getInstance()->url . Config::getInstance()->pre_img . $id . DIRECTORY_SEPARATOR . $filename);
     }
 }

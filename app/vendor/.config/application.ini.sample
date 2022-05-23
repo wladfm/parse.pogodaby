@@ -2,3 +2,6 @@
 country = BY
 city = Витебск
 url = https://pogoda.by
+pre_all_city = /api/v2/weather-fact/all-cities
+pre_api = /api/v2/radar/
+pre_img = /files/radars/static/

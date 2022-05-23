@@ -6,6 +6,9 @@ namespace Core;
  * @property null|string country
  * @property null|string city
  * @property null|string url
+ * @property null|string pre_all_city
+ * @property null|string pre_api
+ * @property null|string pre_img
  */
 class Config extends Singleton
 {
