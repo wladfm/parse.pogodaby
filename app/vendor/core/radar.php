@@ -40,7 +40,7 @@ class Radar extends CurlAbstract
         if ($data) {
             $data = json_decode($data, true);
             if (json_last_error() == JSON_ERROR_NONE) {
-                return $data ? end($data)['url'] : null;
+                return $data && !array_key_exists('message', $data) ? end($data)['url'] : null;
             }
         }
         return null;
