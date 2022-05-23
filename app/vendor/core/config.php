@@ -42,11 +42,6 @@ class Config extends Singleton
         if (!file_exists($fileConfig)) {
             if (file_exists($fileConfig . '.sample')) {
                 copy($fileConfig . '.sample', $fileConfig);
-            } else {
-                $fp = fopen($fileConfig, "w");
-                $textConfig = 'path=db/migrations' . PHP_EOL;
-                fwrite($fp, $textConfig);
-                fclose($fp);
             }
         }
 

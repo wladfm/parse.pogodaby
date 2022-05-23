@@ -25,8 +25,10 @@ class Main extends Singleton
 
     private function saveFile(string $filename, string $img): void
     {
-        $file = fopen('./img/' . $filename, 'w');
-        fwrite($file, $img);
-        fclose($file);
+        $file = fopen(PATH_ROOT . '/img/' . $filename, 'w');
+        if ($file !== false) {
+            fwrite($file, $img);
+            fclose($file);
+        }
     }
 }
