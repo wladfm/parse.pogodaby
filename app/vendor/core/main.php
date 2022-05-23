@@ -9,7 +9,7 @@ class Main extends Singleton
     public function run()
     {
         try {
-            $radar = new Radar(country: Config::getInstance()->country, city: Config::getInstance()->city);
+            $radar = new Radar(Config::getInstance()->country, Config::getInstance()->city);
             $params = $radar->getParamsCity();
             if ($params) {
                 $filename = $radar->getLastRadar(intval($params['id']));

@@ -6,7 +6,7 @@ use Exception;
 
 class Singleton
 {
-    private static array $instances = [];
+    private static $instances = [];
 
     protected function __construct()
     {
@@ -24,7 +24,7 @@ class Singleton
         throw new Exception("Cannot unserialize a singleton.");
     }
 
-    public static function getInstance(): static
+    public static function getInstance()
     {
         $cls = static::class;
         if (!isset(self::$instances[$cls])) {

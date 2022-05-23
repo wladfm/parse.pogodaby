@@ -4,8 +4,8 @@ namespace Core;
 
 class Radar extends CurlAbstract
 {
-    private string $country;
-    private string $city;
+    private $country;
+    private $city;
 
     public function __construct(string $country, string $city)
     {
@@ -16,7 +16,7 @@ class Radar extends CurlAbstract
     /**
      * @return array|null
      */
-    public function getParamsCity(): ?array
+    public function getParamsCity()
     {
         $allCities = $this->getCurl(Config::getInstance()->url . Config::getInstance()->pre_all_city);
         if ($allCities) {
@@ -34,7 +34,7 @@ class Radar extends CurlAbstract
      * @param int $id
      * @return string|null
      */
-    public function getLastRadar(int $id): ?string
+    public function getLastRadar(int $id)
     {
         $data = $this->getCurl(Config::getInstance()->url . Config::getInstance()->pre_api . $id);
         if ($data) {
@@ -51,7 +51,7 @@ class Radar extends CurlAbstract
      * @param string $filename
      * @return bool|string
      */
-    public function getImg(int $id, string $filename): bool|string
+    public function getImg(int $id, string $filename)
     {
         return $this->getCurl(Config::getInstance()->url . Config::getInstance()->pre_img . $id . DIRECTORY_SEPARATOR . $filename);
     }

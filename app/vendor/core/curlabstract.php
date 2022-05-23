@@ -8,7 +8,7 @@ abstract class CurlAbstract
      * @param string $url
      * @return bool|string
      */
-    protected function getCurl(string $url): bool|string
+    protected function getCurl(string $url)
     {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);

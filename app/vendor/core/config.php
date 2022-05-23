@@ -12,8 +12,8 @@ namespace Core;
  */
 class Config extends Singleton
 {
-    private bool $isLoad = false;
-    private array $config = [];
+    private $isLoad = false;
+    private $config = [];
 
     /**
      * @param $key
