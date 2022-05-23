@@ -1,6 +1,6 @@
 [global]
-country = BY
-city = Витебск
+cities = BY:Витебск,BY:Брест
+path_img = ./img/
 url = https://pogoda.by
 pre_all_city = /api/v2/weather-fact/all-cities
 pre_api = /api/v2/radar/

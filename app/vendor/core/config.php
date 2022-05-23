@@ -3,8 +3,8 @@
 namespace Core;
 
 /**
- * @property null|string country
- * @property null|string city
+ * @property null|string cities
+ * @property null|string path_img
  * @property null|string url
  * @property null|string pre_all_city
  * @property null|string pre_api
@@ -47,5 +47,22 @@ class Config extends Singleton
 
         $this->config = parse_ini_file($fileConfig);
         $this->isLoad = true;
+    }
+
+    /**
+     * @return array
+     */
+    public function getCities()
+    {
+        $cities = explode(',', $this->cities);
+        $result = [];
+        foreach ($cities as $city) {
+            $data = explode(':', trim($city));
+            if (count($data) < 2) {
+                continue;
+            }
+            $result[] = ['country' => $data[0], 'city' => $data[1]];
+        }
+        return $result;
     }
 }
