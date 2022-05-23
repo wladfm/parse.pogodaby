@@ -6,6 +6,7 @@ class Radar extends CurlAbstract
 {
     private $country;
     private $city;
+    private $allCities = null;
 
     public function __construct(string $country, string $city)
     {
@@ -18,13 +19,15 @@ class Radar extends CurlAbstract
      */
     public function getParamsCity()
     {
-        $allCities = $this->getCurl(Config::getInstance()->url . Config::getInstance()->pre_all_city);
-        if ($allCities) {
-            $allCities = json_decode($allCities, true);
+        if (!$this->allCities) {
+            $this->allCities = $this->getCurl(Config::getInstance()->url . Config::getInstance()->pre_all_city);
+        }
+        if ($this->allCities) {
+            $this->allCities = json_decode($this->allCities, true);
             if (json_last_error() == JSON_ERROR_NONE) {
-                $allCities = $allCities[$this->country];
-                $foundKey = array_search($this->city, array_column($allCities, 'name'));
-                return $foundKey === false ? null : $allCities[$foundKey];
+                $this->allCities = $this->allCities[$this->country];
+                $foundKey = array_search($this->city, array_column($this->allCities, 'name'));
+                return $foundKey === false ? null : $this->allCities[$foundKey];
             }
         }
         return null;
