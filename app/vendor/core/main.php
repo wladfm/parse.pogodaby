@@ -14,9 +14,10 @@ class Main extends Singleton
                 $radar = new Radar($city['country'], $city['city']);
                 $params = $radar->getParamsCity();
                 if ($params) {
-                    $filename = $radar->getLastRadar(intval($params['id']));
+                    $id = intval($params['id']);
+                    $filename = $radar->getLastRadar($id);
                     if ($filename) {
-                        $img = $radar->getImg(intval($params['id']), $filename);
+                        $img = $radar->getImg($id, $filename);
                         $this->saveFile($params['icao'] . '_latest.png', $img);
                     }
                 }

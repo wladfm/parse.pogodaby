@@ -4,6 +4,7 @@ namespace Core;
 
 /**
  * @property null|string cities
+ * @property null|string replace_city
  * @property null|string path_img
  * @property null|string url
  * @property null|string pre_all_city
@@ -64,5 +65,23 @@ class Config extends Singleton
             $result[] = ['country' => $data[0], 'city' => $data[1]];
         }
         return $result;
+    }
+
+    /**
+     * @param $id
+     * @return string|null
+     */
+    public function getReplaceCity($id)
+    {
+        $replaceCities = explode(',', $this->replace_city);
+        $result = [];
+        foreach ($replaceCities as $replace) {
+            $data = explode(':', trim($replace));
+            if (count($data) < 2) {
+                continue;
+            }
+            $result[$data[0]] = $data[1];
+        }
+        return array_key_exists($id, $result) ? $result[$id] : null;
     }
 }

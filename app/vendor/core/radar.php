@@ -37,14 +37,21 @@ class Radar extends CurlAbstract
      * @param int $id
      * @return string|null
      */
-    public function getLastRadar(int $id)
+    public function getLastRadar(int &$id)
     {
         $data = $this->getCurl(Config::getInstance()->url . Config::getInstance()->pre_api . $id);
         if ($data) {
             $data = json_decode($data, true);
             if (json_last_error() == JSON_ERROR_NONE) {
-                return $data && !array_key_exists('message', $data) ? end($data)['url'] : null;
+                if ($data && !array_key_exists('message', $data)) {
+                    return end($data)['url'];
+                }
             }
+        }
+        $replaceId = Config::getInstance()->getReplaceCity($id);
+        if ($replaceId) {
+            $id = $replaceId;
+            return $this->getLastRadar($replaceId);
         }
         return null;
     }

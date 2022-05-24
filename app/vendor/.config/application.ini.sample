@@ -1,5 +1,6 @@
 [global]
-cities = BY:Витебск,BY:Брест
+cities = BY:Витебск,BY:Брест,BY:Гродно,BY:Гомель,BY:Минск-Уручье
+replace_city = 26820:26825
 path_img = ./img/
 url = https://pogoda.by
 pre_all_city = /api/v2/weather-fact/all-cities
