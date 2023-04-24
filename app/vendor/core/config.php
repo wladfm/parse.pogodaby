@@ -10,6 +10,7 @@ namespace Core;
  * @property null|string pre_all_city
  * @property null|string pre_api
  * @property null|string pre_img
+ * @property null|string curl_timeout_s
  */
 class Config extends Singleton
 {
@@ -83,5 +84,14 @@ class Config extends Singleton
             $result[$data[0]] = $data[1];
         }
         return array_key_exists($id, $result) ? $result[$id] : null;
+    }
+
+    /**
+     * Таймаут запроса
+     * @return int
+     */
+    public function getCurlTimeOut()
+    {
+        return intval($this->curl_timeout_s);
     }
 }

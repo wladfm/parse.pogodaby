@@ -15,6 +15,7 @@ abstract class CurlAbstract
         curl_setopt($ch, CURLINFO_HEADER_OUT, true);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($ch, CURLOPT_TIMEOUT, Config::getInstance()->getCurlTimeOut());
         $data = curl_exec($ch);
         curl_close($ch);
         return $data;
